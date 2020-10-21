@@ -1,0 +1,21 @@
+<button mat-raised-button (click)="create()">Create</button>
+<h4>Selected Product:</h4>
+
+<ng-container *ngIf="vm$ | async as vm">
+  {{ vm?.selectedProduct | json }}
+  <mat-card
+    *ngFor="let product of vm?.products; trackBy: product?.id"
+    (click)="getById(product.id)"
+    class="mat-elevation-z1"
+    style="margin: 10px 0"
+  >
+    <mat-card-header>
+      <mat-card-title>{{ product?.productName }}</mat-card-title>
+      <mat-card-subtitle>subtitle</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content> </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary">Ok</button>
+    </mat-card-actions>
+  </mat-card>
+</ng-container>

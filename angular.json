@@ -1,0 +1,130 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "unsubscribe-app": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "projects/unsubscribe-app",
+      "sourceRoot": "projects/unsubscribe-app/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/unsubscribe-app",
+            "index": "projects/unsubscribe-app/src/index.html",
+            "main": "projects/unsubscribe-app/src/main.ts",
+            "polyfills": "projects/unsubscribe-app/src/polyfills.ts",
+            "tsConfig": "projects/unsubscribe-app/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "projects/unsubscribe-app/src/favicon.ico",
+              "projects/unsubscribe-app/src/assets"
+            ],
+            "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/purple-green.css",
+              "projects/unsubscribe-app/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/unsubscribe-app/src/environments/environment.ts",
+                  "with": "projects/unsubscribe-app/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "unsubscribe-app:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "unsubscribe-app:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "unsubscribe-app:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/unsubscribe-app/src/test.ts",
+            "polyfills": "projects/unsubscribe-app/src/polyfills.ts",
+            "tsConfig": "projects/unsubscribe-app/tsconfig.spec.json",
+            "karmaConfig": "projects/unsubscribe-app/karma.conf.js",
+            "assets": [
+              "projects/unsubscribe-app/src/favicon.ico",
+              "projects/unsubscribe-app/src/assets"
+            ],
+            "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/purple-green.css",
+              "projects/unsubscribe-app/src/styles.scss"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/unsubscribe-app/tsconfig.app.json",
+              "projects/unsubscribe-app/tsconfig.spec.json",
+              "projects/unsubscribe-app/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/unsubscribe-app/e2e/protractor.conf.js",
+            "devServerTarget": "unsubscribe-app:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "unsubscribe-app:serve:production"
+            }
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "unsubscribe-app"
+}
